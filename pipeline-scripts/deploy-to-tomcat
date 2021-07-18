@@ -1,7 +1,7 @@
 def mvnHome
 def remote = [:]
 remote.name = "Staging"
-remote.host = "172.31.7.121"
+remote.host = "172.31.22.94"
 remote.allowAnyHosts = true
 remote.user = "centos"
 remote.password = "Rnstech@123"
@@ -11,11 +11,11 @@ pipeline {
    stages {
       stage('Check Out Code') {
           agent {
-              label 'Slave'
+              label 'buildserver'
           }
          steps {
             // Get src code from a GitHub repository
-            git credentialsId: 'Github_un_pwd', url: 'https://github.com/venkat09docs/Maven-Java-Project.git'
+            git credentialsId: 'Github_un_pwd', url: ''
             
             script{
                 mvnHome = tool name: 'maven3', type: 'maven'
@@ -24,7 +24,7 @@ pipeline {
       }
       stage('Build'){
           agent {
-              label 'Slave'
+              label 'buildserver'
           }
         steps{
             // Run Maven on a Unix agent.
@@ -44,7 +44,7 @@ pipeline {
    
    stage('Deploy to Staging'){
       agent {
-              label 'Slave'
+              label 'buildserver'
           }
           
       steps{
