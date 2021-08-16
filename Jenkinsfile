@@ -5,7 +5,7 @@ def ansible = [:]
          ansible.password = 'Rnstech@123'
          ansible.allowAnyHosts = true
 def kops = [:]
-         kops.name = 'kops'
+         kops.name = 'kop'
          kops.host = '172.31.23.238'
          kops.user = 'centos'
          kops.password = 'Rnstech@123'
@@ -19,7 +19,7 @@ pipeline {
     }
 
     stages {
-        stage('Prepare-Workspace') {
+        stage('Prepare-Workspace') 
             steps {
                 // Get some code from a GitHub repository
                 git credentialsId: 'build', url: 'https://github.com/EMSELVA/Maven-Java-Project.git'   
